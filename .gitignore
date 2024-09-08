@@ -1,0 +1,9 @@
+# created by virtualenv automatically
+.venv/*
+.idea/*
+foodie_be/.env
+mediafiles/*
+db.sqlite3
+foodie_be/authentication/migrations/*
+foodie_be/foodie/migrations/*
+__pycache__
