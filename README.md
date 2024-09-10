@@ -1,4 +1,4 @@
-![Logo](https://github.com/mikebgrep/foodie/blob/master/_bc98495b-d8f7-4687-8f0f-1d784450b4ab.jpeg)
+![Logo](https://github.com/mikebgrep/foodie/blob/master/git_assets/logo.jpeg)
 
 # Foodie
 ![version](https://img.shields.io/badge/version-1.0.0-green) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
@@ -27,7 +27,7 @@
 📝Note the API path is: ```{baseUrl}/api/foodie```
 
 ### Admin panel 
-![admin](https://github.com/mikebgrep/foodie/blob/master/foodie-admin1.gif)
+![admin](https://github.com/mikebgrep/foodie/blob/master/git_assets/foodie-admin.gif)
 
 📝Note to login in the panel you must register admin user from the ```/signup``` endpoint afterwards the users can be added from the panel.
 
