@@ -18,7 +18,7 @@
 2. ```GET /category/pk/recipes```  return list of ```recipe``` object.
 3. ```GET /trending``` return list of trendings ```recipes``` objects.
 4. ```GET /favorites``` return list of favorites recipies.
-    4.1. ```PATCH /favorites/<int:recipe_pk>/favorite``` - endpoint to favorite and unfavorite recipe.
+   1. ```PATCH /favorites/<int:recipe_pk>/favorite``` - endpoint to favorite and unfavorite recipe.
 5. ```GET /tags``` return list of ```tag ``` objects that has ```pk, name``` fields
 6. ```GET /tag/pk/recipies``` return list of recipe objects with the current tag.
 7. ```POST /api/auth/signup``` endpoint to register admin user.Request body must have  ```username```, ```password``` strings and ```is_superuser``` boolean that should be set to ```True```
