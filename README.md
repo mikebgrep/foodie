@@ -7,9 +7,9 @@
 --- 
 ### Features 
    - 🐍Python Django & Django rest framework based
-   - 🛳 Docker image in docker hub for easy deployment
+   - 🛳 Docker image in docker hub for easy deployment ( coming soon )
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
-   - 🤖 Android application source code for sale on codecanyon ( comming soon)
+   - 🤖 Android application source code for sale on codecanyon ( coming soon )
    - 🔐 Header authentication for easy access managment to the API
    - 🪶 SQLite databse support.
 
