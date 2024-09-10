@@ -55,4 +55,4 @@ You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and `
 Don't forget to add the ```X-Auth-Header``` for each request.
 
 ### License
-The repository is MIT license
+The repository use MIT license
