@@ -24,7 +24,7 @@
 6. ```GET /tag/pk/recipies``` return list of recipe objects with the current tag.
 7. ```POST /api/auth/signup``` endpoint to register admin user.Request body must have  ```username```, ```password``` strings and ```is_superuser``` boolean that should be set to ```True```
 
-📝 Note each recipie object consist of ```['pk', 'name', 'category'*, 'serves', 'tag', 'image', 'video'*, 'ingreadiants', 'instructions']``` (* mean optional)
+📝 Note each recipie object consist of ```['pk', 'name', 'category'*, 'serves', 'tag', 'image', 'video'*, 'ingreadiants', 'instructions']``` (* means optional)
 
 📝Note the API path is: ```{baseUrl}/api/foodie```
 
