@@ -28,6 +28,8 @@
 
 📝Note the API path is: ```{baseUrl}/api/foodie```
 
+📝 Note ```{baseUrl}/api/foodie?search={name}``` is the search path as ```name`` is full name of the recipe or part from the it's name.
+
 ### Admin panel 
 ![admin](https://github.com/mikebgrep/foodie/blob/master/git_assets/foodie-admin.gif)
 
