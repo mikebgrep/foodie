@@ -2,8 +2,9 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import filters
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED
+from rest_framework.status import HTTP_201_CREATED
 from rest_framework.viewsets import ModelViewSet
 
 from .HeaderAuthentication import HeaderAuthentication
@@ -13,6 +14,7 @@ from .serializers import RecipesSerializer, CategorySerializer, TagsSerializer
 
 class SearchRecipies(ListAPIView):
     authentication_classes = [HeaderAuthentication]
+    pagination_class = PageNumberPagination
     serializer_class = RecipesSerializer
     queryset = Recipe.objects.all()
     filter_backends = [filters.SearchFilter]
@@ -30,8 +32,7 @@ class CategoryRecipes(ListAPIView):
     serializer_class = RecipesSerializer
 
     def get_queryset(self):
-        recipies_pks = [x.pk for x in get_list_or_404(Recipe, category__pk=self.kwargs['pk'])]
-        return Recipe.objects.filter(pk__in=recipies_pks)
+        return Recipe.objects.select_related('category').filter(category_id=self.kwargs['pk'])
 
 
 class TrendingRecipies(ListAPIView):
