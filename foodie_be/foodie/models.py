@@ -1,16 +1,16 @@
 from datetime import datetime, timedelta
-
+import uuid
 import django
 from django.db import models
 from django.db.models import BooleanField
 
 
 def upload_to(instance, filename):
-    return 'images/{filename}'.format(filename=filename)
+    return 'images/{uuid}_{filename}'.format(uuid=str(uuid.uuid4()) ,filename=filename)
 
 
 def upload_vide_to(instance, filename):
-    return 'videos/{filename}'.format(filename=filename)
+    return 'videos/{uuid}_{filename}'.format(uuid=str(uuid.uuid4()), filename=filename)
 
 
 class Tag(models.Model):
@@ -18,6 +18,7 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Category(models.Model):
     name = models.CharField(max_length=70)
