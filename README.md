@@ -12,6 +12,7 @@
    - 🤖 Android application source code for sale on codecanyon ( coming soon )
    - 🔐 Header authentication for easy access managment to the API
    - 🪶 SQLite databse support.
+   - 🔎 Pagination support for search endpoint 70 results per page.
 
 ### Endpoints 
 1. ```GET /category``` - return list of ```category``` object that has ```pk, name``` fields.
