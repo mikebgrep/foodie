@@ -7,9 +7,9 @@
 --- 
 ### Features 
    - 🐍Python Django & Django rest framework based
-   - 🛳 Docker image in docker hub for easy deployment
+   - 🛳 Docker image in docker hub for easy deployment ( coming soon )
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
-   - 🤖 Android application source code for sale on codecanyon ( comming soon)
+   - 🤖 Android application source code for sale on codecanyon ( coming soon )
    - 🔐 Header authentication for easy access managment to the API
    - 🪶 SQLite databse support.
 
@@ -18,6 +18,7 @@
 2. ```GET /category/pk/recipes```  return list of ```recipe``` object.
 3. ```GET /trending``` return list of trendings ```recipes``` objects.
 4. ```GET /favorites``` return list of favorites recipies.
+   1. ```PATCH /favorites/<int:recipe_pk>/favorite``` - endpoint to favorite and unfavorite recipe.
 5. ```GET /tags``` return list of ```tag ``` objects that has ```pk, name``` fields
 6. ```GET /tag/pk/recipies``` return list of recipe objects with the current tag.
 7. ```POST /api/auth/signup``` endpoint to register admin user.Request body must have  ```username```, ```password``` strings and ```is_superuser``` boolean that should be set to ```True```
@@ -54,4 +55,4 @@ You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and `
 Don't forget to add the ```X-Auth-Header``` for each request.
 
 ### License
-The repository is MIT license
+The repository use MIT license
