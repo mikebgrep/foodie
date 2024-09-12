@@ -37,15 +37,15 @@
 
 ### Installation
 
-#### 📝 Required steps either for any method. 
+#### 📝 Mutual steps. 
 ---
 1. Clone the repo and cd the root folder 📂:
 ```
 $ git clone https://github.com/mikebgrep/foodie && cd foodie_be
 ```
 2. Rename ```.env.examle``` file to ```.env``` open it and enter values for each variable.
-    2.1 For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret *(that will be used for authorization to the API)*
-    2.2 For ```DJANGO_SECRET``` run the following function in terminal and use the output:
+    1. For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret *(that will be used for authorization to the API)*
+    2. For ```DJANGO_SECRET``` run the following function in terminal and use the output:
 ```
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
