@@ -7,7 +7,7 @@
 --- 
 ### Features 
    - 🐍Python Django & Django rest framework based
-   - 🛳 Docker image in docker hub for easy deployment ( coming soon )
+   - 🛳 Dockerfile for easy deployment,packages for Raspberry Pi added in the Dockerfile
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
    - 🤖 Android application source code for sale on codecanyon ( coming soon )
    - 🔐 Header authentication for easy access managment to the API
@@ -54,7 +54,7 @@ $ python -c 'from django.core.management.utils import get_random_secret_key; pri
 You can install the server locally as following this guide:
 1. Install packages
 ```
-# We assume current directory is *../foodie/foodie_be*
+# We assume current directory is ../foodie/foodie_be
 $ python -m venv ../.venv && source ../.venv/bin/activate
 $ pip install -r requirements.txt
 ```
