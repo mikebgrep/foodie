@@ -35,26 +35,47 @@
 
 📝Note to login in the panel you must register admin user from the ```/signup``` endpoint afterwards the users can be added from the panel.
 
-### Installation 
-You can install the server locally as following this guide:
-1. Clone the repo and install packages
+### Installation
+
+📝 Required steps earcher for any method. 
+1. Clone the repo and cd the root folder 📂:
 ```
 $ git clone https://github.com/mikebgrep/foodie && cd foodie_be
-$ python -m venv .venv && source .venv/bin/activate
-$ pip install -r requirements.txt
 ```
 2. Rename ```.env.examle``` file to ```.env``` open it and enter values for each variable.
-    1. For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret *(that will be used for authorization to the API)*
-    2. For ```DJANGO_SECRET``` run the following function in terminal and use the output:
+    2.1 For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret *(that will be used for authorization to the API)*
+    2.2 For ```DJANGO_SECRET``` run the following function in terminal and use the output:
 ```
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
-3.Make the migrations and run the server 
+
+#### Method 1
+You can install the server locally as following this guide:
+1. Install packages
+```
+$ python -m venv .venv && source .venv/bin/activate
+$ pip install -r requirements.txt
+```
+2.Make the migrations and run the server 
 ```
 $ python manage.py makemigrations && python manage.py migrate && python manage.py runserver
 ```
 
-You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and ```127.0.0.1:8000/api/foodie``` from Postman or any other client.
+#### Method 2
+Installing in docker container( for Raspberry pi remove the commented section in the Dockerfile)
+
+1. Build the Docker imge  from the Dockerfile.
+```
+$ docker build --tag "foodie" . 
+```
+3. Run the image.
+```
+$ docker run -d -p 8000:8000 foodie
+```
+ At this point the container is running.You can access it from localhost or the machine local ip address.
+
+
+📝 You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and ```127.0.0.1:8000/api/foodie``` from Postman or any other client.
 Don't forget to add the ```X-Auth-Header``` for each request.
 
 ### License
