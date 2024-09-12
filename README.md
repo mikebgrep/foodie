@@ -37,7 +37,7 @@
 
 ### Installation
 
-📝 Required steps either for any method. 
+#### 📝 Required steps either for any method. 
 ---
 1. Clone the repo and cd the root folder 📂:
 ```
@@ -54,7 +54,8 @@ $ python -c 'from django.core.management.utils import get_random_secret_key; pri
 You can install the server locally as following this guide:
 1. Install packages
 ```
-$ python -m venv .venv && source .venv/bin/activate
+# We assume current directory is ``../foodie/foodie_be``
+$ python -m venv ../.venv && source ../.venv/bin/activate
 $ pip install -r requirements.txt
 ```
 2.Make the migrations and run the server 
