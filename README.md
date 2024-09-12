@@ -37,7 +37,8 @@
 
 ### Installation
 
-📝 Required steps earcher for any method. 
+📝 Required steps either for any method. 
+---
 1. Clone the repo and cd the root folder 📂:
 ```
 $ git clone https://github.com/mikebgrep/foodie && cd foodie_be
@@ -48,8 +49,8 @@ $ git clone https://github.com/mikebgrep/foodie && cd foodie_be
 ```
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
-
-#### Method 1
+#### Method 1 
+---
 You can install the server locally as following this guide:
 1. Install packages
 ```
@@ -62,6 +63,7 @@ $ python manage.py makemigrations && python manage.py migrate && python manage.p
 ```
 
 #### Method 2
+---
 Installing in docker container( for Raspberry pi remove the commented section in the Dockerfile)
 
 1. Build the Docker imge  from the Dockerfile.
@@ -74,7 +76,7 @@ $ docker run -d -p 8000:8000 foodie
 ```
  At this point the container is running.You can access it from localhost or the machine local ip address.
 
-
+---
 📝 You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and ```127.0.0.1:8000/api/foodie``` from Postman or any other client.
 Don't forget to add the ```X-Auth-Header``` for each request.
 
