@@ -41,7 +41,7 @@
 ---
 1. Clone the repo and cd the root folder 📂:
 ```
-$ git clone https://github.com/mikebgrep/foodie && cd foodie_be
+$ git clone https://github.com/mikebgrep/foodie && cd foodie/foodie_be
 ```
 
 📝 Skip step 2 if you not deploying for local use. Instead set the env variable in the service/machine secrets valut!
