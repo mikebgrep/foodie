@@ -7,7 +7,7 @@
 --- 
 ### Features 
    - 🐍Python Django & Django rest framework based
-   - 🛳 Dockerfile for easy deployment,packages for Raspberry Pi added in the Dockerfile
+   - 🛳 Dockerfile for easy deployment + included packages for Raspberry Pi.
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
    - 🤖 Android application source code for sale on codecanyon ( coming soon )
    - 🔐 Header authentication for easy access managment to the API
@@ -43,13 +43,15 @@
 ```
 $ git clone https://github.com/mikebgrep/foodie && cd foodie_be
 ```
+
+📝 Skip step 2 if you not deploying for local use. Instead set the env variable in the service/machine secrets valut!
+
 2. Rename ```.env.examle``` file to ```.env``` open it and enter values for each variable.
     1. For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret that will be used for authorization to the API).
     2. For ```DJANGO_SECRET``` run the following function in terminal and use the output:
 ```
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
-📝 Skip step 2 if you deploying on remote host or the container will be accessed from outside local network.Instead set the env variable in the service/machine secrets value!
 
 #### Method 1 
 ---
