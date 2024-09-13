@@ -49,6 +49,8 @@ $ git clone https://github.com/mikebgrep/foodie && cd foodie_be
 ```
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
+📝 Skip step 2 if you deploying on remote host or the container will be accessed from outside local network.Instead set the env variable in the service/machine secrets value!
+
 #### Method 1 
 ---
 You can install the server locally as following this guide:
