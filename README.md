@@ -44,7 +44,7 @@
 $ git clone https://github.com/mikebgrep/foodie && cd foodie/foodie_be
 ```
 
-📝 Skip step 2 if you not deploying for local use. Instead set the env variable in the service/machine secrets valut!
+📝 Skip step 2 if you not deploying for local use. Instead set the env variable in the service secrets valut!
 
 2. Rename ```.env.examle``` file to ```.env``` open it and enter values for each variable.
     1. For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret that will be used for authorization to the API).
