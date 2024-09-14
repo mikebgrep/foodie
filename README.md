@@ -10,8 +10,8 @@
    - 🛳 Dockerfile for easy deployment + included packages for Raspberry Pi.
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
    - 🤖 Android application source code for sale on codecanyon ( coming soon )
-   - 🔐 Header authentication for easy access managment to the API
-   - 🪶 SQLite databse support.
+   - 🔐 Header authentication for easy access management to the API
+   - 🪶 SQLite database support.
    - 🔎 Search endpoint support pagination ( 70 results per page. )
 
 ### Endpoints 
@@ -19,7 +19,7 @@
 2. ```GET /category/pk/recipes```  return list of ```recipe``` object.
 3. ```GET /trending``` return list of trendings ```recipes``` objects.
 4. ```GET /favorites``` return list of favorites recipies.
-   1. ```PATCH /favorites/<int:recipe_pk>/favorite``` - endpoint to favorite and unfavorite recipe.
+   1. ```PATCH /favorites/<int:recipe_pk>/favorite``` - endpoint to favorite and un-favorite recipe.
 5. ```GET /tags``` return list of ```tag ``` objects that has ```pk, name``` fields
 6. ```GET /tag/pk/recipies``` return list of recipe objects with the current tag.
 7. ```POST /api/auth/signup``` endpoint to register admin user.Request body must have  ```username```, ```password``` strings and ```is_superuser``` boolean that should be set to ```True```
@@ -44,7 +44,7 @@
 $ git clone https://github.com/mikebgrep/foodie && cd foodie/foodie_be
 ```
 
-📝 Skip step 2 if you not deploying for local use. Instead set the env variable in the service secrets valut!
+📝 Skip step 2 if you're not deploying for local use, instead set the env variable in the service secrets vault or add them in the Dockerfile if not available!
 
 2. Rename ```.env.examle``` file to ```.env``` open it and enter values for each variable.
     1. For the ```X_AUTH_HEADER``` you can add random GUUID. (this will be the authentication secret that will be used for authorization to the API).
@@ -71,7 +71,7 @@ $ python manage.py makemigrations && python manage.py migrate && python manage.p
 ---
 Installing in docker container( for Raspberry pi remove the commented section in the Dockerfile)
 
-1. Build the Docker imge  from the Dockerfile.
+1. Build the Docker image  from the Dockerfile.
 ```
 $ docker build --tag "foodie" . 
 ```
