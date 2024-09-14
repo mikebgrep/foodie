@@ -5,7 +5,7 @@ FROM python:3.12-slim-bookworm
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Envirument for local user
+# Environment for local user
 
 # ENV X_AUTH_HEADER={GUID_VALUE}
 # ENV DJANGO_SECRET='{DJANGO_SECRET}'
