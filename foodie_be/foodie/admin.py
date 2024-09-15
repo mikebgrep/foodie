@@ -29,7 +29,7 @@ class RecipeAdmin(admin.ModelAdmin):
         ("Recipe Name", {"fields": ['name']}),
         ("Recipe Group", {"fields": ['category', 'tag']}),
         ("Created date", {"fields": ['created_at']}),
-        ("Serves", {"fields": ['serves']}),
+        ("Additional Info", {"fields": ['serves', 'prep_time']}),
         ("Image", {"fields": ['image']}),
         ("Video", {"fields": ['video']}),
 

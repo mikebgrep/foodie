@@ -25,11 +25,13 @@ class Categories(ListAPIView):
     authentication_classes = [HeaderAuthentication]
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+    pagination_class = None
 
 
 class CategoryRecipes(ListAPIView):
     authentication_classes = [HeaderAuthentication]
     serializer_class = RecipesSerializer
+    pagination_class = None
 
     def get_queryset(self):
         return Recipe.objects.select_related('category').filter(category_id=self.kwargs['pk'])
@@ -38,6 +40,7 @@ class CategoryRecipes(ListAPIView):
 class TrendingRecipies(ListAPIView):
     authentication_classes = [HeaderAuthentication]
     serializer_class = RecipesSerializer
+    pagination_class = None
 
     def get_queryset(self):
         results_pks = [x.pk for x in Recipe.objects.all() if x.is_trending == True][:15]
@@ -66,7 +69,7 @@ class Tags(ListAPIView):
     authentication_classes = [HeaderAuthentication]
     serializer_class = TagsSerializer
     queryset = Tag.objects.all()
-
+    pagination_class = None
 
 class TagsRecipies(ListAPIView):
     authentication_classes = [HeaderAuthentication]

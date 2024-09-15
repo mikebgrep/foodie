@@ -45,6 +45,7 @@ class RecipesSerializer(serializers.ModelSerializer):
             "video",
             "category",
             "tag",
+            "prep_time",
             "is_favorite",
             "ingredients",
             "steps"

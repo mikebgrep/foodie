@@ -36,6 +36,7 @@ class Recipe(models.Model):
     video = models.FileField(upload_to=upload_vide_to, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="recipies", blank=True, null=True)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name="recipes", default=None)
+    prep_time = models.IntegerField(default=None, null=True)
 
     @property
     def is_trending(self):
