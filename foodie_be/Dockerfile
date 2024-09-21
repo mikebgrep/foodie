@@ -34,11 +34,11 @@ WORKDIR /app
 # Add the current directory files (on your machine) to the container
 ADD . /app/
 RUN pip install -r requirements.txt
-RUN python manage.py makemigrations authentication && python manage.py makemigrations foodie  && python manage.py migrate
+RUN python manage.py makemigrations authentication && python manage.py makemigrations foodie  && python manage.py migrate && python manage.py collectstatic --noinput
 # Copy the rest of the project files
 
 # Expose the server port
-EXPOSE 8000
+EXPOSE 80
 
 # Start uWSGI
-CMD ["uwsgi", "--socket", "/tmp/uwsgi.sock", "--http", ":8000", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
+CMD ["uwsgi", "--socket", "/tmp/uwsgi.sock", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
