@@ -34,7 +34,7 @@ RUN python manage.py makemigrations authentication && python manage.py makemigra
 # Copy the rest of the project files
 
 # Expose the server port
-EXPOSE 8000
+EXPOSE 8001
 
 # Start uWSGI
-CMD ["uwsgi", "--http", ":8000", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
+CMD ["uwsgi", "--http", ":8001", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
