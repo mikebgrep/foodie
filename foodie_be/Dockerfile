@@ -22,6 +22,12 @@ RUN pip install -r requirements.txt
 
 # Copy the project
 COPY . /app/
+RUN apt-get update && apt-get install -y --no-install-recommends nginx
+
+RUN rm /etc/nginx/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
