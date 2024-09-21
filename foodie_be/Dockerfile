@@ -1,5 +1,5 @@
-# Use an official Python runtime as a parent image
-FROM python:3.12-slim-bookworm
+# Base image
+FROM python:3.12-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -10,42 +10,35 @@ ENV PYTHONUNBUFFERED 1
 # ENV X_AUTH_HEADER={GUID_VALUE}
 # ENV DJANGO_SECRET='{DJANGO_SECRET}'
 
+# Install build dependencies and curl
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libssl-dev \
+    libpcre3-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
+# Install uWSGI and Nginx
+RUN pip install uwsgi
+RUN apt-get update && apt-get install -y --no-install-recommends nginx
+
+# Configure Nginx
+RUN rm /etc/nginx/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-available/
+RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+
+# Copy requirements file and install dependencies
 # Set the working directory in the container to /app
 WORKDIR /app
 
 # Add the current directory files (on your machine) to the container
 ADD . /app/
-
-
-# Raspberry Pi packages 📦 uncomment when deploy on Pi
-
-# RUN apt update && apt install -y \
-#    libjpeg-dev \
-#    zlib1g-dev \
-#    libpng-dev \
-#    libfreetype6-dev \
-#    liblcms2-dev \
-#    libopenjp2-7-dev \
-#    libtiff5-dev \
-#    libwebp-dev \
-#    tcl8.6-dev \
-#    tk8.6-dev \
-#    python3-tk \
-#    libharfbuzz-dev \
-#    libfribidi-dev
-#  RUN pip install --upgrade pip setuptools wheel
-
-# Install any needed packages specified in requirements.txt
-RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
-# Make migrations and migrate
 RUN python manage.py makemigrations authentication && python manage.py makemigrations foodie  && python manage.py migrate
+# Copy the rest of the project files
 
-# Expose the port server is running on
+# Expose the server port
 EXPOSE 8000
 
-# Start the server
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Start uWSGI
+CMD ["uwsgi", "--socket", "/tmp/uwsgi.sock", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
