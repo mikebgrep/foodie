@@ -41,4 +41,4 @@ RUN python manage.py makemigrations authentication && python manage.py makemigra
 EXPOSE 8000
 
 # Start uWSGI
-CMD ["uwsgi", "--socket", "/tmp/uwsgi.sock", "--http", ":8000" "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
+CMD ["uwsgi", "--socket", "/tmp/uwsgi.sock", "--http", ":8000", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
