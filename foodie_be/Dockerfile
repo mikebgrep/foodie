@@ -20,12 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Install uWSGI and Nginx
 RUN pip install uwsgi
-RUN apt-get update && apt-get install -y --no-install-recommends nginx
-
-# Configure Nginx
-RUN rm /etc/nginx/sites-enabled/default
-COPY nginx.conf /etc/nginx/sites-available/
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+RUN apt-get update
 
 # Copy requirements file and install dependencies
 # Set the working directory in the container to /app
@@ -34,11 +29,12 @@ WORKDIR /app
 # Add the current directory files (on your machine) to the container
 ADD . /app/
 RUN pip install -r requirements.txt
-RUN python manage.py makemigrations authentication && python manage.py makemigrations foodie  && python manage.py migrate && python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput
+RUN python manage.py makemigrations authentication && python manage.py makemigrations foodie  && python manage.py migrate
 # Copy the rest of the project files
 
 # Expose the server port
-EXPOSE 80
+EXPOSE 8000
 
 # Start uWSGI
-CMD ["uwsgi", "--socket", "/tmp/uwsgi.sock", "--http", ":80", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
+CMD ["uwsgi", "--http", ":8000", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
