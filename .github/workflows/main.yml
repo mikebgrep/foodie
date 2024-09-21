@@ -21,4 +21,4 @@ jobs:
           uses: azure/container-apps-deploy-action@v1
           with:
             appSourcePath: ${{ github.workspace }}/foodie_be
-            acrName: foodie-admin
+            acrName: foodie
