@@ -1,4 +1,4 @@
-name: Python application
+name: Azure docker image
 
 on:
   push:
@@ -12,7 +12,6 @@ jobs:
       runs-on: ubuntu-latest
       
       steps:
-      
         - name: Log in to Azure
           uses: azure/login@v1
           with:
