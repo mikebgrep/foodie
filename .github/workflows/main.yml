@@ -1,0 +1,25 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "back4app-deployment" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+      runs-on: ubuntu-latest
+      
+      steps:
+      
+        - name: Log in to Azure
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_SECRET }}
+      
+        - name: Build and deploy Container App
+          uses: azure/container-apps-deploy-action@v1
+          with:
+            appSourcePath: ${{ github.workspace }}/foodie_be
+            acrName: foodie-admin
