@@ -31,9 +31,9 @@ RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
-RUN python manage.py makemigrations
-RUN python manage.py migrate authentication
-RUN python manage.py migrate foodie
+RUN python manage.py makemigrations authentication
+RUN python manage.py makemigrations foodie
+RUN python manage.py migrate
 
 # Expose the port uWSGI will run on
 EXPOSE 8000
