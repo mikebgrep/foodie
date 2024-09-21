@@ -2,7 +2,7 @@ name: Azure docker image
 
 on:
   push:
-    branches: [ "back4app-deployment" ]
+    branches: [ "master" ]
 
 permissions:
   contents: read
