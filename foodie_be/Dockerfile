@@ -1,13 +1,6 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.12-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libssl-dev \
-    libpcre3-dev \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
@@ -22,11 +15,6 @@ RUN pip install -r requirements.txt
 
 # Copy the project
 COPY . /app/
-RUN apt-get update && apt-get install -y --no-install-recommends nginx
-
-RUN rm /etc/nginx/sites-enabled/default
-COPY nginx.conf /etc/nginx/sites-available/
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
 
 # Collect static files
@@ -39,4 +27,4 @@ RUN python manage.py migrate
 EXPOSE 8000
 
 # Run uWSGI
-CMD ["uwsgi", "--ini", "uwsgi.ini"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wsgi"]
