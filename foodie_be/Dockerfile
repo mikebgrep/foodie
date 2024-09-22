@@ -27,4 +27,4 @@ RUN python manage.py migrate
 EXPOSE 8000
 
 # Run uWSGI
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wsgi"]
+CMD ["uwsgi", "--http", ":8001", "--module", "foodie_be.wsgi:application", "--uid", "www-data", "--gid", "www-data"]
