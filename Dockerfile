@@ -35,16 +35,15 @@ RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 
-
 # Collect static files
 RUN python manage.py makemigrations authentication
 RUN python manage.py makemigrations foodie
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
-# Instead of 0 here need to be 1000 for local use
-RUN usermod -u 0 www-data
+RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
+RUN chown -R www-data:www-data db.sqlite3
 
 # Expose the port uWSGI will run on
 EXPOSE 8000
