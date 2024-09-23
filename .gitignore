@@ -1,7 +1,7 @@
 # created by virtualenv automatically
 .venv/*
 .idea/*
-foodie_be/.env
+.env
 media/*
 db.sqlite3
 foodie_be/authentication/migrations/*

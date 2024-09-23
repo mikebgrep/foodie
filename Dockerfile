@@ -22,17 +22,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Install nginx
 RUN apt-get update && apt-get install -y --no-install-recommends nginx
 
-
 # Set the working directory
 WORKDIR /app
 
 # Copy the project
-COPY . /app
+COPY /foodie_be /app
 
 # Configure Nginx
 RUN rm /etc/nginx/sites-enabled/default
-COPY nginx.conf /etc/nginx/sites-available/
+COPY /foodie_be/nginx.conf /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+COPY ./requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip install --upgrade pip
@@ -44,7 +44,6 @@ RUN python manage.py makemigrations authentication
 RUN python manage.py makemigrations foodie
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
-
 
 # Expose the port uWSGI will run on
 EXPOSE 8000
