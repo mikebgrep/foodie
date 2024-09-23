@@ -42,7 +42,8 @@ RUN python manage.py makemigrations foodie
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
-RUN usermod -u 1000 www-data
+# Instead of 0 here need to be 1000 for local use
+RUN usermod -u 0 www-data
 RUN usermod -G staff www-data
 
 # Expose the port uWSGI will run on
