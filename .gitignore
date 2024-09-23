@@ -7,4 +7,4 @@ db.sqlite3
 foodie_be/authentication/migrations/*
 foodie_be/foodie/migrations/*
 __pycache__
-static/*
+foodie_be/static/*
