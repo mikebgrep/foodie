@@ -1,9 +1,18 @@
 from datetime import datetime, timedelta
 import uuid
 import django
+from django.core.files.storage import FileSystemStorage
+import os
+
 from django.db import models
 from django.db.models import BooleanField
 
+
+class CustomFileSystemStorage(FileSystemStorage):
+    def _save(self, name, content):
+        name = super()._save(name, content)
+        os.chmod(self.path(name), 0o666)
+        return name
 
 def upload_to(instance, filename):
     return 'images/{uuid}_{filename}'.format(uuid=str(uuid.uuid4()) ,filename=filename)
@@ -32,8 +41,8 @@ class Recipe(models.Model):
     serves = models.IntegerField()
     is_favorite = BooleanField(default=False)
     created_at = models.DateTimeField(default=django.utils.timezone.now)
-    image = models.ImageField(upload_to=upload_to, blank=False, null=False)
-    video = models.FileField(upload_to=upload_vide_to, blank=True, null=True)
+    image = models.ImageField(upload_to=upload_to, storage=CustomFileSystemStorage(), blank=False, null=False)
+    video = models.FileField(upload_to=upload_vide_to, storage=CustomFileSystemStorage(), blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="recipies", blank=True, null=True)
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name="recipes", default=None)
     prep_time = models.IntegerField(default=None, null=True)
