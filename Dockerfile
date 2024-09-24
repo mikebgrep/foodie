@@ -43,7 +43,6 @@ RUN python manage.py collectstatic --noinput
 
 RUN usermod -u 1000 www-data
 RUN usermod -G staff www-data
-RUN chown -R www-data:www-data db.sqlite3
 # Expose the port uWSGI will run on
 EXPOSE 8000
 
