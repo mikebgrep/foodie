@@ -5,7 +5,6 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-
 # Install build dependencies and curl
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -30,26 +29,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #    libharfbuzz-dev \
 #    libfribidi-dev
 
-
-# Install nginx
-RUN apt-get update && apt-get install -y --no-install-recommends nginx
-
 # Set the working directory
 WORKDIR /app
 
 # Copy the project
 COPY /foodie_be /app
 
-# Configure Nginx
-RUN rm /etc/nginx/sites-enabled/default
-COPY /foodie_be/nginx.conf /etc/nginx/sites-available/
-RUN ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 COPY ./requirements.txt /app/requirements.txt
 
 # Install dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
-
 
 # Collect static files
 RUN python manage.py makemigrations authentication
@@ -57,13 +47,6 @@ RUN python manage.py makemigrations foodie
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
-RUN chown -R www-data:www-data /app/static
-RUN mkdir /app/media
-RUN chown -R www-data:www-data /app/media
-RUN chown -R www-data:www-data /app/sql
-RUN echo 'umask 002' >> /etc/profile
-
-USER www-data
 # Expose the port uWSGI will run on
 EXPOSE 8000
 

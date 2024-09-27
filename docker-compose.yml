@@ -1,19 +1,34 @@
-version: '3.8'  # Specify the version of docker-compose
+version: '3.8'
 
 services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    container_name: nginx-yaml
+    volumes:
+      - uwsgi_data:/tmp/uwsgi/
+      - web_static:/app/static/:ro
+      - web_media:/app/media/:ro
+    ports:
+      - "8000:80"
+    depends_on:
+      - web
+
   web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: foodie-yaml  # Use underscores or dashes in the name if needed
+    container_name: foodie-yaml
     env_file:
       - .env
     volumes:
-      - media:/app/static/media  # Mount the media volume
-      - data:/app/sql            # Mount the data volume
+      - data:/app/sql
     ports:
-      - "8747:8000"  # Expose port 8000 of the container on port 8747 of the host
+      - "8747:8000"
 
 volumes:
-  media:  # Named volume for media files
-  data:   # Named volume for SQL data
+  data:
+  uwsgi_data:
+  web_static:
+  web_media:
