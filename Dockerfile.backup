@@ -5,7 +5,6 @@ FROM python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-
 # Install build dependencies and curl
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
@@ -15,20 +14,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Raspberry Pi packages
-# RUN apt update && apt install -y \
-#    libjpeg-dev \
-#    zlib1g-dev \
-#    libpng-dev \
-#    libfreetype6-dev \
-#    liblcms2-dev \
-#    libopenjp2-7-dev \
-#    libtiff5-dev \
-#    libwebp-dev \
-#    tcl8.6-dev \
-#    tk8.6-dev \
-#    python3-tk \
-#    libharfbuzz-dev \
-#    libfribidi-dev
+RUN apt update && apt install -y \
+    libjpeg-dev \
+    zlib1g-dev \
+    libpng-dev \
+    libfreetype6-dev \
+    liblcms2-dev \
+    libopenjp2-7-dev \
+    libtiff5-dev \
+    libwebp-dev \
+    tcl8.6-dev \
+    tk8.6-dev \
+    python3-tk \
+    libharfbuzz-dev \
+    libfribidi-dev
+
 
 
 # Install nginx
@@ -50,22 +50,24 @@ COPY ./requirements.txt /app/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-
 # Collect static files
 RUN python manage.py makemigrations authentication
 RUN python manage.py makemigrations foodie
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
 
+# Set ownership of /app and /tmp/uwsgi.sock to www-data user and group
 RUN chown -R www-data:www-data /app/static
-RUN mkdir /app/media
-RUN chown -R www-data:www-data /app/media
+RUN mkdir -p /tmp && chown www-data:www-data /tmp
 RUN chown -R www-data:www-data /app/sql
+# Set the umask so that newly created files have rw for user and group (www-data)
 RUN echo 'umask 002' >> /etc/profile
 
-USER www-data
 # Expose the port uWSGI will run on
 EXPOSE 8000
+
+# Set the default user to www-data
+USER www-data
 
 # Run uWSGI
 CMD ["uwsgi", "--ini", "uwsgi.ini"]
