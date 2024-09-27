@@ -1,0 +1,19 @@
+version: '3.8'  # Specify the version of docker-compose
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: foodie-yaml  # Use underscores or dashes in the name if needed
+    env_file:
+      - .env
+    volumes:
+      - media:/app/static/media  # Mount the media volume
+      - data:/app/sql            # Mount the data volume
+    ports:
+      - "8747:8000"  # Expose port 8000 of the container on port 8747 of the host
+
+volumes:
+  media:  # Named volume for media files
+  data:   # Named volume for SQL data
