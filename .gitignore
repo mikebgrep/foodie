@@ -8,3 +8,4 @@ foodie_be/authentication/migrations/*
 foodie_be/foodie/migrations/*
 __pycache__
 foodie_be/static/*
+foodie_be/media/*

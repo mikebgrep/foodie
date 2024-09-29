@@ -1,3 +1,7 @@
+import mimetypes
+import os
+
+from django.http import HttpResponseBadRequest, HttpResponse, Http404
 from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import filters
 from rest_framework.decorators import action
@@ -10,6 +14,7 @@ from rest_framework.viewsets import ModelViewSet
 from .HeaderAuthentication import HeaderAuthentication
 from .models import Category, Recipe, Tag
 from .serializers import RecipesSerializer, CategorySerializer, TagsSerializer
+from foodie_be import settings
 
 
 class SearchRecipies(ListAPIView):
@@ -78,3 +83,26 @@ class TagsRecipies(ListAPIView):
     def get_queryset(self):
         recipies_pks = [x.pk for x in get_list_or_404(Recipe, tag__pk=self.kwargs['pk'])]
         return Recipe.objects.filter(pk__in=recipies_pks)
+
+
+def media(request, file_path=None):
+    media_root = getattr(settings, 'MEDIA_ROOT', None)
+    if not media_root:
+        return HttpResponseBadRequest('Invalid Media Root Configuration')
+
+    if not file_path:
+        return HttpResponseBadRequest('Invalid File Path')
+
+    full_file_path = os.path.join(media_root, file_path)
+
+    if not os.path.exists(full_file_path):
+        raise Http404("File not found")
+
+    try:
+        with open(full_file_path, 'rb') as doc:
+            mime_type, _ = mimetypes.guess_type(full_file_path)
+            response = HttpResponse(doc.read(), content_type=mime_type or 'application/octet-stream')
+            response['Content-Disposition'] = f'inline; filename={file_path.split("/")[-1]}'
+            return response
+    except FileNotFoundError:
+        raise Http404("File not found")

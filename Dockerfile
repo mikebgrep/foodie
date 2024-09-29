@@ -30,12 +30,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #    libfribidi-dev
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /foodie_be
 
 # Copy the project
-COPY /foodie_be /app
+COPY /foodie_be /foodie_be
 
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /foodie_be/requirements.txt
 
 # Install dependencies
 RUN pip install --upgrade pip
