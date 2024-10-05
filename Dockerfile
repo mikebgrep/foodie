@@ -41,7 +41,7 @@ COPY ./requirements.txt /foodie_be/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Privilage sql folder and containing files
+# Privilege sql folder and containing files
 RUN mkdir /foodie_be/sql
 RUN chown -R www-data:www-data /foodie_be/sql
 RUN echo 'umask 002' >> /etc/profile

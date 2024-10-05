@@ -33,6 +33,5 @@ else:
     urlpatterns = ([
         path("api/auth/", include("authentication.urls")),
         path("api/foodie/", include("foodie.urls")),
-        re_path(r'^media/(?P<file_path>.*)$', views.media),
         path('', admin.site.urls),
     ])

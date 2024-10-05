@@ -7,9 +7,9 @@ services:
       dockerfile: nginx/Dockerfile
     container_name: nginx-yaml
     volumes:
-      - uwsgi_data:/tmp/uwsgi/:ro
-      - web_static:/app/static/:ro
-      - web_media:/app/media/
+      - uwsgi_data:/tmp/uwsgi/
+      - web_static:/foodie_be/static/:ro
+      - web_media:/foodie_be/media/
     ports:
       - "80:80"
       - "443:443"
@@ -25,9 +25,14 @@ services:
     container_name: foodie-yaml
     env_file:
       - .env
+    restart: always
+    command: >
+      sh -c "uwsgi --ini uwsgi.ini"
     volumes:
       - data:/app/sql/
       - uwsgi_data:/tmp/uwsgi/
+      - web_media:/foodie_be/media/
+      - web_static:/foodie_be/static/
     networks:
       - foodie_network
 
