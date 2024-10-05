@@ -8,10 +8,13 @@ services:
     container_name: nginx-yaml
     volumes:
       - uwsgi_data:/tmp/uwsgi/
-      - web_static:/app/static/:ro
-      - web_media:/app/media/:ro
+      - web_static:/foodie_be/static/:ro
+      - web_media:/foodie_be/media/
     ports:
-      - "8000:80"
+      - "80:80"
+      - "443:443"
+    networks:
+      - foodie_network
     depends_on:
       - web
 
@@ -22,13 +25,23 @@ services:
     container_name: foodie-yaml
     env_file:
       - .env
+    restart: always
+    command: >
+      sh -c "uwsgi --ini uwsgi.ini"
     volumes:
-      - data:/app/sql
-    ports:
-      - "8747:8000"
+      - data:/app/sql/
+      - uwsgi_data:/tmp/uwsgi/
+      - web_media:/foodie_be/media/
+      - web_static:/foodie_be/static/
+    networks:
+      - foodie_network
 
 volumes:
   data:
   uwsgi_data:
   web_static:
   web_media:
+
+networks:
+   foodie_network:
+        driver: bridge
