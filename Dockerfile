@@ -41,14 +41,16 @@ COPY ./requirements.txt /foodie_be/requirements.txt
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Privilage sql folder and containing files
+RUN mkdir /foodie_be/sql
+RUN chown -R www-data:www-data /foodie_be/sql
+RUN echo 'umask 002' >> /etc/profile
+
 # Collect static files
 RUN python manage.py makemigrations authentication
 RUN python manage.py makemigrations foodie
 RUN python manage.py migrate
 RUN python manage.py collectstatic --noinput
-
-# Expose the port uWSGI will run on
-EXPOSE 8000
 
 # Run uWSGI
 CMD ["uwsgi", "--ini", "uwsgi.ini"]

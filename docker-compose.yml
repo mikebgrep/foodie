@@ -7,11 +7,14 @@ services:
       dockerfile: nginx/Dockerfile
     container_name: nginx-yaml
     volumes:
-      - uwsgi_data:/tmp/uwsgi/
+      - uwsgi_data:/tmp/uwsgi/:ro
       - web_static:/app/static/:ro
-      - web_media:/app/media/:ro
+      - web_media:/app/media/
     ports:
-      - "8000:80"
+      - "80:80"
+      - "443:443"
+    networks:
+      - foodie_network
     depends_on:
       - web
 
@@ -23,12 +26,17 @@ services:
     env_file:
       - .env
     volumes:
-      - data:/app/sql
-    ports:
-      - "8747:8000"
+      - data:/app/sql/
+      - uwsgi_data:/tmp/uwsgi/
+    networks:
+      - foodie_network
 
 volumes:
   data:
   uwsgi_data:
   web_static:
   web_media:
+
+networks:
+   foodie_network:
+        driver: bridge
