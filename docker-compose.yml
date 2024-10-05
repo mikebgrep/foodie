@@ -10,6 +10,7 @@ services:
       - uwsgi_data:/tmp/uwsgi/
       - web_static:/foodie_be/static/:ro
       - web_media:/foodie_be/media/
+      - cert:/foodie_be/nginx/ssl/:ro
     ports:
       - "80:80"
       - "443:443"
@@ -29,7 +30,8 @@ services:
     command: >
       sh -c "uwsgi --ini uwsgi.ini"
     volumes:
-      - data:/app/sql/
+      - data:/foodie_be/sql/
+      - cert:/foodie_be/nginx/ssl/
       - uwsgi_data:/tmp/uwsgi/
       - web_media:/foodie_be/media/
       - web_static:/foodie_be/static/
@@ -38,6 +40,7 @@ services:
 
 volumes:
   data:
+  cert:
   uwsgi_data:
   web_static:
   web_media:

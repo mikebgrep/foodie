@@ -36,6 +36,7 @@ WORKDIR /foodie_be
 COPY /foodie_be /foodie_be
 
 COPY ./requirements.txt /foodie_be/requirements.txt
+COPY ./nginx/ssl /foodie_be/nginx/ssl
 
 # Install dependencies
 RUN pip install --upgrade pip
