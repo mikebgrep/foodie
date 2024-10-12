@@ -15,6 +15,6 @@ urlpatterns = [
     path("category/<int:pk>/recipes", CategoryRecipes.as_view()),
     path("tags", Tags.as_view()),
     path("tag/<int:pk>/recipes", TagsRecipies.as_view()),
-    path("", SearchRecipies.as_view()),
+    path("home", SearchRecipies.as_view()),
     path('', include(route.urls)),
 ]
