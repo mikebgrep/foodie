@@ -1,7 +1,3 @@
-import mimetypes
-import os
-
-from django.http import HttpResponseBadRequest, HttpResponse, Http404
 from django.shortcuts import get_list_or_404, get_object_or_404
 from rest_framework import filters
 from rest_framework.decorators import action
@@ -14,7 +10,6 @@ from rest_framework.viewsets import ModelViewSet
 from .HeaderAuthentication import HeaderAuthentication
 from .models import Category, Recipe, Tag
 from .serializers import RecipesSerializer, CategorySerializer, TagsSerializer
-from foodie_be import settings
 
 
 class SearchRecipies(ListAPIView):
@@ -49,7 +44,11 @@ class TrendingRecipies(ListAPIView):
 
     def get_queryset(self):
         results_pks = [x.pk for x in Recipe.objects.all() if x.is_trending == True][:15]
-        return Recipe.objects.filter(pk__in=results_pks)
+        if len(results_pks) < 15:
+            for pk in [x.pk for x in Recipe.objects.order_by('-pk')[:15 - len(results_pks)]]:
+                results_pks.append(pk)
+
+        return Recipe.objects.filter(pk__in=results_pks).order_by('-pk')
 
 
 class FavoriteRecipes(ModelViewSet):
