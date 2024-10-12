@@ -19,4 +19,6 @@ class CustomUserAdmin(UserAdmin):
         ),
     )
 
+    list_display = ("username", "is_staff")
+
 admin.site.register(User, CustomUserAdmin)

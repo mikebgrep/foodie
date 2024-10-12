@@ -45,6 +45,9 @@ class Recipe(models.Model):
     def __lt__(self, other):
         return self.pk > other.pk
 
+    def __str__(self):
+        return self.name
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=120)
