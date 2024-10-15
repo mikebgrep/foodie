@@ -9,7 +9,7 @@
    - 🐍Python Django & Django rest framework based
    - 🛳 Dockerfile for easy deployment + included packages for Raspberry Pi.
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
-   - 🤖 Android application source code for sale on codecanyon ( coming soon )
+   - 🤖 Android application source code for the supporters ( find more info in the readme bellow 👇)
    - 🔐 Header authentication for easy access management to the API
    - 🪶 SQLite database support.
    - 🔎 Search endpoint support pagination ( 70 results per page. )
@@ -84,6 +84,11 @@ $ docker run -d -p 8000:8000 foodie
 ---
 📝 You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and ```127.0.0.1:8000/api/foodie``` from Postman or any other client.
 Don't forget to add the ```X-Auth-Header``` for each request.
+
+## Support 
+You can support the repo as click on the gif bellow 👇 I will share a repo with Android application to the supporters that leave a tip more or equal to 17$) you can take a look of the Android demo in [Playstore](https://play.google.com/store/apps/details?id=com.mikegrep.bg.foodie)
+
+[![tip](https://github.com/mikebgrep/good-food-recipes-api/blob/master/Coin-Kit_Support-XXX-OnTipeee.gif)](https://en.tipeee.com/mikebgrep)
 
 ### License
 The repository use MIT license
