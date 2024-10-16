@@ -95,7 +95,7 @@ Don't forget to add the ```X-Auth-Header``` for each request.
 📝 Note for Raspberry pi remove the commented packages 📦 in the Dockerfile.
 
 1. Copy ssl pem files in ``foodie/nginx/ssl`` folder 📂. The file need to be in thr folder are ``fullchain.pem`` and ``privkey.pem``.
-2. Replace ``localhost`` value in ``foodie/goodie.nginx.conf`` file with the actual domain name of your host.
+2. Replace ``localhost`` value in ``foodie/foodie_be/foodie.nginx.conf`` file with the actual domain name of your host.
 3. Run docker compose up command in the folder where is it ``docker-compose.yml`` file.
 ```
 $ docker compose up
