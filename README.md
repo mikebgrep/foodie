@@ -116,6 +116,7 @@ Payload:
 ```
 
 💡 ``X-Auth-Header`` header should be added to request
+
 ---
 Finally you can access the admin panel from ```https://your-domain-name/admin ``` in browser and ```https://your-domain-name/api/foodie``` from Postman or any other client.
 
