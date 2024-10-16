@@ -45,15 +45,13 @@
             <p><strong>Password:</strong> IamDjango123!</p>
             <p class="text-muted">Note📝: CRUD operations are disabled; you cannot add, delete, or update entries from the panel.</p>
         </div>
-
+        </div>
     <div class="text-center mt-4">
         <h3>Demo Android Application Client</h3>
         <hr class="w-50">
         <a href="https://play.google.com/store/apps/details?id=com.mikegrep.bg.foodie" target="_blank">
             <img src="https://i.ibb.co/k0x3w2h/apk.png" alt="Download Android App" class="img-fluid" width="2000">
         </a>
-    </div>
-    
     </div>
 
 ### Installation
