@@ -72,7 +72,7 @@ $ git clone https://github.com/mikebgrep/foodie && cd foodie/foodie_be
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
 
-#### Method 1 
+#### Method 1 ( Development)
 ---
 You can install the server locally as following this guide:
 1. Install packages
@@ -85,24 +85,39 @@ $ pip install -r requirements.txt
 ```
 $ python manage.py makemigrations && python manage.py migrate && python manage.py runserver
 ```
-
-#### Method 2
----
-Installing in docker container( for Raspberry pi remove the commented section in the Dockerfile)
-
-1. Build the Docker image  from the Dockerfile.
-```
-$ docker build --tag "foodie" . 
-```
-3. Run the image.
-```
-$ docker run -d -p 8000:8000 foodie
-```
- At this point the container is running.You can access it from localhost or the machine local ip address.
-
 ---
 📝 You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and ```127.0.0.1:8000/api/foodie``` from Postman or any other client.
 Don't forget to add the ```X-Auth-Header``` for each request.
+
+#### Method 2 ( Production- Docker compose )
+---
+📝 Note for Raspberry pi remove the commented section in the Dockerfile.
+
+1. Copy ssl pem files in ``foodie/nginx/ssl`` folder 📂. The file need to be in thr folder are ``fullchain.pem`` and ``privkey.pem``.
+2. Replace ``localhost`` value in ``foodie/goodie.nginx.conf`` file with the actual domain name of your host.
+3. Run docker compose up command in the folder where is it ``docker-compose.yml`` file.
+```
+$ docker compose up
+or
+$ docker-compose up
+```
+ At this point the container will be build and running.You can access it from domain name from each browser.
+
+---
+📝 You can access the admin panel from ```https://your-domain-name/admin ``` in browser and ```https://your-domain-name/api/foodie``` from Postman or any other client.
+Don't forget to add the ```X-Auth-Header``` for each request.
+
+Now you need to register admin user preferably with curl.
+Endpoint: ``POST https://host/api/auth/signup``
+Payload:
+```
+{
+    "username": "your-username",
+    "password": "your-password",
+    "is_admin": true
+}
+```
+💡 Make sure to add ``X_AUTH_HEADER``.
 
 ## Support 
 You can support the repo as click on the gif bellow 👇 I will share a repo with Android application to the supporters that leave a tip more or equal to 17$) you can take a look of the Android demo in [Playstore](https://play.google.com/store/apps/details?id=com.mikegrep.bg.foodie)
