@@ -91,7 +91,7 @@ Don't forget to add the ```X-Auth-Header``` for each request.
 
 #### Method 2 ( Production- Docker compose )
 ---
-📝 Note for Raspberry pi remove the commented section in the Dockerfile.
+📝 Note for Raspberry pi remove the commented packages 📦 in the Dockerfile.
 
 1. Copy ssl pem files in ``foodie/nginx/ssl`` folder 📂. The file need to be in thr folder are ``fullchain.pem`` and ``privkey.pem``.
 2. Replace ``localhost`` value in ``foodie/goodie.nginx.conf`` file with the actual domain name of your host.
@@ -103,11 +103,7 @@ $ docker-compose up
 ```
  At this point the container will be build and running.You can access it from domain name from each browser.
 
----
-📝 You can access the admin panel from ```https://your-domain-name/admin ``` in browser and ```https://your-domain-name/api/foodie``` from Postman or any other client.
-Don't forget to add the ```X-Auth-Header``` for each request.
-
-Now you need to register admin user preferably with curl.
+4. Register admin user preferably with curl.
 Endpoint: ``POST https://host/api/auth/signup``
 Payload:
 ```
@@ -117,7 +113,12 @@ Payload:
     "is_admin": true
 }
 ```
-💡 Make sure to add ``X_AUTH_HEADER``.
+💡 Make sure to add ``X-Auth-Header``.
+
+Finally you can access the admin panel from ```https://your-domain-name/admin ``` in browser and ```https://your-domain-name/api/foodie``` from Postman or any other client.
+
+💡 Don't forget to add the ```X-Auth-Header``` for each request.
+
 
 ## Support 
 You can support the repo as click on the gif bellow 👇 I will share a repo with Android application to the supporters that leave a tip more or equal to 17$) you can take a look of the Android demo in [Playstore](https://play.google.com/store/apps/details?id=com.mikegrep.bg.foodie)
