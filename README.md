@@ -34,6 +34,7 @@
 ![admin](https://github.com/mikebgrep/foodie/blob/master/assets/foodie-admin.gif)
 
 📝Note to login in the panel you must register admin user from the ```/signup``` endpoint afterwards the users can be added from the panel.
+
 <div class="text-center mt-4">
         <h3>Demo Admin Panel</h3>
         <hr class="w-50">
@@ -101,9 +102,9 @@ $ docker compose up
 or
 $ docker-compose up
 ```
- At this point the container will be build and running.You can access it from domain name from each browser.
+At this point the container will be build and running.You can access it from domain name from each browser.
 
-4. Register admin user preferably with curl.
+4.Register admin user preferably with curl.
 Endpoint: ``POST https://host/api/auth/signup``
 Payload:
 ```
@@ -114,7 +115,7 @@ Payload:
 }
 ```
 💡 Make sure to add ``X-Auth-Header``.
-
+---
 Finally you can access the admin panel from ```https://your-domain-name/admin ``` in browser and ```https://your-domain-name/api/foodie``` from Postman or any other client.
 
 💡 Don't forget to add the ```X-Auth-Header``` for each request.
