@@ -9,7 +9,7 @@
    - 🐍Python Django & Django rest framework based
    - 🛳 Dockerfile for easy deployment + included packages for Raspberry Pi.
    - 👨‍🍳 Admin panel revamped with [jazzmin](https://github.com/farridav/django-jazzmin)
-   - 🤖 Android application source code for sale on codecanyon ( coming soon )
+   - 🤖 Android application source code for the supporters ( find more info in the readme bellow 👇)
    - 🔐 Header authentication for easy access management to the API
    - 🪶 SQLite database support.
    - 🔎 Search endpoint support pagination ( 70 results per page. )
@@ -35,6 +35,26 @@
 
 📝Note to login in the panel you must register admin user from the ```/signup``` endpoint afterwards the users can be added from the panel.
 
+<div class="text-center mt-4">
+        <h3>Demo Admin Panel</h3>
+        <hr class="w-50">
+        <a href="https://foodieservice.cloud/" target="_blank">
+            <img src="https://i.ibb.co/NLbdxsn/admin.png" alt="Admin Panel" class="img-fluid" width="2000">
+        </a>
+        <div class="mt-3">
+            <p><strong>Username:</strong> admin</p>
+            <p><strong>Password:</strong> IamDjango123!</p>
+            <p class="text-muted">Note📝: CRUD operations are disabled; you cannot add, delete, or update entries from the panel.</p>
+        </div>
+        </div>
+    <div class="text-center mt-4">
+        <h3>Demo Android Application Client</h3>
+        <hr class="w-50">
+        <a href="https://play.google.com/store/apps/details?id=com.mikegrep.bg.foodie" target="_blank">
+            <img src="https://i.ibb.co/k0x3w2h/apk.png" alt="Download Android App" class="img-fluid" width="2000">
+        </a>
+    </div>
+
 ### Installation
 
 #### 📝 Mutual steps. 
@@ -53,7 +73,7 @@ $ git clone https://github.com/mikebgrep/foodie && cd foodie/foodie_be
 $ python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
 ```
 
-#### Method 1 
+#### Method 1 ( Development)
 ---
 You can install the server locally as following this guide:
 1. Install packages
@@ -66,24 +86,47 @@ $ pip install -r requirements.txt
 ```
 $ python manage.py makemigrations && python manage.py migrate && python manage.py runserver
 ```
-
-#### Method 2
----
-Installing in docker container( for Raspberry pi remove the commented section in the Dockerfile)
-
-1. Build the Docker image  from the Dockerfile.
-```
-$ docker build --tag "foodie" . 
-```
-3. Run the image.
-```
-$ docker run -d -p 8000:8000 foodie
-```
- At this point the container is running.You can access it from localhost or the machine local ip address.
-
 ---
 📝 You can access the admin panel from ```127.0.0.1:8000/admin ``` in browser and ```127.0.0.1:8000/api/foodie``` from Postman or any other client.
 Don't forget to add the ```X-Auth-Header``` for each request.
+
+#### Method 2 ( Production- Docker compose )
+---
+📝 Note for Raspberry pi remove the commented packages 📦 in the Dockerfile.
+
+1. Copy ssl pem files in ``foodie/nginx/ssl`` folder 📂. The file need to be in the folder are ``fullchain.pem`` and ``privkey.pem``.
+2. Replace ``localhost`` value in ``foodie/foodie_be/foodie.nginx.conf`` file with the actual domain name of your host.
+3. Run docker compose up command in the folder where is it ``docker-compose.yml`` file.
+```
+$ docker compose up
+or
+$ docker-compose up
+```
+At this point the container will be build and running.You can access it from domain name from each browser.
+
+4.Register admin user preferably with curl.
+Endpoint: ``POST https://host/api/auth/signup``
+Payload:
+```
+{
+    "username": "your-username",
+    "password": "your-password",
+    "is_superuser": true
+}
+```
+
+💡 ``X-Auth-Header`` header should be added to request
+
+---
+Finally you can access the admin panel from ```https://your-domain-name/admin ``` in browser and ```https://your-domain-name/api/foodie``` from Postman or any other client.
+
+💡 Don't forget to add the ```X-Auth-Header``` for each request.
+
+
+## Support 
+You can support the repo as click on the gif bellow 👇 I will share a repo with Android application to the supporters that leave a tip more or equal to 17$) you can take a look of the Android demo in [Playstore](https://play.google.com/store/apps/details?id=com.mikegrep.bg.foodie)
+
+[![tip](https://github.com/mikebgrep/good-food-recipes-api/blob/master/Coin-Kit_Support-XXX-OnTipeee.gif)](https://en.tipeee.com/mikebgrep)
 
 ### License
 The repository use MIT license
